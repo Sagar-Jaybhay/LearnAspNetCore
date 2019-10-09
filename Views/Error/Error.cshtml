@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1>I m Global Exception Handle Page</h1>
+
+
+
+<div class="card">
+
+    <div class="card-header">
+        Error Path: @ViewBag.ExceptionPath;
+    </div>
+
+    <div class="card-body">
+        Exception Message: @ViewBag.ExceptionMessage;
+    </div>
+    
+    <div class="card-footer">
+        Stack Trace:@ViewBag.StackTrace
+    </div>
+</div>

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Student>
+
+@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}*@
+@{
+    ViewData["Title"] = "List";
+    
+}
+
+<h1>List</h1>
+
+
+@*<div>
+    <table>
+        <thead>
+            <tr>
+                <td>StudentId</td>
+                <td>FullName</td>
+                <td>Address</td>
+                <td>Division</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in Model)
+            {
+                <tr>
+                    <td>@v.StudentId</td>
+                    <td>@v.FullName</td>
+                    <td>@v.Address</td>
+                    <td>@v.Division</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>*@
+
+<div class="card-deck">
+    @foreach(var stud in Model)
+    {
+    <div class="card m-3">
+        <div class="card-header">
+            <h3>@stud.FullName</h3>
+        </div>
+        @{
+        var photopath = "~/images/" +( stud.PhotoPath ?? "images.jpg");
+        }
+        <img class="card-img-top" src="@photopath" asp-append-version="true" />
+        <div class="card-body font-weight-bold">
+            <div class="row">
+                <span class="m-3">Student ID</span>
+                <span class="m-3">@stud.StudentId </span>
+            </div>
+
+            <div class="row">
+                <span class="m-3">Division</span>
+                <span class="m-3">@stud.Division </span>
+            </div>
+
+            <div class="row">
+                <span class="m-3">Address</span>
+                <span class="m-3">@stud.Address </span>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-controller="home" asp-action="Details" asp-route-id="@stud.StudentId" class="btn btn-primary">Details</a>
+            <a asp-action="Edit" asp-controller="Home"  class="btn btn-success" asp-route-id="@stud.StudentId">Edit</a>
+            <button class="btn btn-danger">Delete</button>
+            @*@Html.ActionLink("Link Text","ActionName", "ControllerName", new { id = stud.StudentId });
+            <a href="@Url.Action("details", "home", new { id = stud.StudentId })" >View</a>*@
+
+
+        </div>
+    </div> 
+    }
+</div>
