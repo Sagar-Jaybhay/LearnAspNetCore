@@ -80,12 +80,10 @@ namespace LearnAspCore.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
-
                 if (result.Succeeded)
                 {
-                    if(!string.IsNullOrEmpty(returnUrl))
+                    if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     return Redirect(returnUrl);
                     else
                     {
@@ -94,13 +92,10 @@ namespace LearnAspCore.Controllers
                     //return RedirectToAction("List", "Home");
                 }
 
-                ModelState.AddModelError("", "Invalid Login");
-                
-
+                ModelState.AddModelError("", "Invalid Login");           
             }
-
             return View();
         }
-
+        //
     }
 }
