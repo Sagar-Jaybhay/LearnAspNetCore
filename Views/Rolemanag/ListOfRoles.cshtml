@@ -20,8 +20,8 @@
                 </h4>
             </div>
             <div class="card-footer">
-                <a class="btn btn-info" asp-action="" asp-controller="">Edit</a>
-                <a class="btn btn-info" asp-action="" asp-controller="">Delete</a>
+                <a class="btn btn-info" asp-action="EditRole" asp-controller="Rolemanag" asp-route-id="@role.Id">Edit</a>
+                <a class="btn btn-danger" asp-action="" asp-controller="">Delete</a>
             </div>
 
         </div>
@@ -34,7 +34,6 @@
 else
 {
     <div class="card">
-        
         <div class="card-header">
             No Roles Found In Table
         </div>
@@ -42,11 +41,7 @@ else
         <div class="card-body">
             <a class="btn btn-info" asp-action="CreateRoles" asp-controller="Rolemanag">Create Role</a>
         </div>
-
     </div>
-
-
-
 }
 
 
