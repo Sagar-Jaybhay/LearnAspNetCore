@@ -1,4 +1,4 @@
-﻿@inject SignInManager<IdentityUser> SignInManager;
+﻿@inject SignInManager<ExtendedIdentityUser> SignInManager;
 
 <!DOCTYPE html>
 
@@ -8,6 +8,8 @@
     <title>@ViewBag.Title</title>
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
 
 </head>
@@ -25,7 +27,12 @@
                     <li class="nav-item">
                         <a asp-action="Create" asp-controller="home" class="nav-link">Create</a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a asp-action="CreateRoles" asp-controller="Rolemanag" class="nav-link">Create Roles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="ListOfRoles" asp-controller="Rolemanag" class="nav-link">Role List</a>
+                    </li>
                     
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -38,6 +45,7 @@
                                 </button>
                             </form>
                         </li>
+
                     }
                     else
                     {

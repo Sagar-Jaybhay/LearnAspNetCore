@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LearnAspCore.Models
 {
-    public class OurDbContext:IdentityDbContext
+    public class OurDbContext:IdentityDbContext<ExtendedIdentityUser>
     {
         public DbSet<Student> Students { get; set; }
         public OurDbContext(DbContextOptions<OurDbContext> options):base(options)

@@ -6,6 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191015055534_ExtendIdentityUser.cs" />
+    <Compile Remove="Migrations\20191015055534_ExtendIdentityUser.Designer.cs" />
+    <Compile Remove="Migrations\20191015060659_ExtendUsersIdentities.cs" />
+    <Compile Remove="Migrations\20191015060659_ExtendUsersIdentities.Designer.cs" />
+    <Compile Remove="Migrations\20191015061319_NewlyAddedMigration.cs" />
+    <Compile Remove="Migrations\20191015061319_NewlyAddedMigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
@@ -28,6 +37,7 @@
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="wwwroot\lib\jquery-validate\localization\" />
+    <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
   </ItemGroup>
 
 </Project>

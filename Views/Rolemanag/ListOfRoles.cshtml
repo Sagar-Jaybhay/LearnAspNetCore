@@ -1,0 +1,52 @@
+﻿@model IQueryable<IdentityRole>;
+@{
+    ViewData["Title"] = "ListOfRoles";
+}
+
+<h1>All Roles</h1>
+
+@if (Model.Any())
+{
+    foreach (var role in Model)
+    {
+        <div class="card">
+            <div class="card-header">
+                @role.Id   
+            </div>
+            <div class="card-body">
+                
+                <h4 class="card-title">
+                    @role.Name
+                </h4>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-info" asp-action="" asp-controller="">Edit</a>
+                <a class="btn btn-info" asp-action="" asp-controller="">Delete</a>
+            </div>
+
+        </div>
+
+
+    }
+    
+
+}
+else
+{
+    <div class="card">
+        
+        <div class="card-header">
+            No Roles Found In Table
+        </div>
+        
+        <div class="card-body">
+            <a class="btn btn-info" asp-action="CreateRoles" asp-controller="Rolemanag">Create Role</a>
+        </div>
+
+    </div>
+
+
+
+}
+
+

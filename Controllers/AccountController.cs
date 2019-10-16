@@ -16,10 +16,10 @@ namespace LearnAspCore.Controllers
     public class AccountController : Controller
     {
         private ILogger logger;
-        private readonly UserManager<IdentityUser> _user;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ExtendedIdentityUser> _user;
+        private readonly SignInManager<ExtendedIdentityUser> _signInManager;
 
-        public AccountController(ILogger<AccountController> logger,UserManager<IdentityUser> user,SignInManager<IdentityUser> signInManager)
+        public AccountController(ILogger<AccountController> logger,UserManager<ExtendedIdentityUser> user,SignInManager<ExtendedIdentityUser> signInManager)
         {
             this.logger = logger;
             _user = user;
@@ -31,16 +31,40 @@ namespace LearnAspCore.Controllers
         {
             return View();
         }
+
+        [AllowAnonymous]
+        [AcceptVerbs("Get","Post")]
+        public async Task<IActionResult> IsUsedEmailID(string Email)
+        {
+            //if (!string.IsNullOrEmpty(EmailID))
+            {
+             var user= await _user.FindByEmailAsync(Email);
+
+             if (user == null)
+             {
+                 return Json(true);
+             }
+             else
+             {
+                 return Json($"Email {Email} this Email ID already in Used.");
+             }
+            }
+            
+        }
+
+
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(RegistrationVIewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user=new IdentityUser()
+                var user=new ExtendedIdentityUser()
                 {
                     UserName = model.Email,
-                    Email = model.Email
+                    Email = model.Email,
+                    City = model.City,
+                    Zip = model.Zip
                 };
              var result= await  _user.CreateAsync(user, model.Password);
 

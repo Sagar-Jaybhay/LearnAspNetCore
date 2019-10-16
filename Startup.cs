@@ -46,7 +46,7 @@ namespace LearnAspCore
                 options.Password.RequiredUniqueChars = 5;
 
             });
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ExtendedIdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<OurDbContext>();
 
             services.AddScoped<IStudentRepository, SQLStudentRepository>();
