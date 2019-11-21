@@ -14,6 +14,6 @@ namespace LearnAspCore.ViewModel
         [Required(ErrorMessage = "Role Name Is Required.")]
         public string RoleName { get; set; }
 
-        public List<string> Users { get; set; }
+        public List<string> Users { get; set; }=new List<string>();
     }
 }

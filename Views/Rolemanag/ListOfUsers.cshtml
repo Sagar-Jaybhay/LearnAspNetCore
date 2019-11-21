@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ExtendedIdentityUser>
+
+@{
+    ViewData["Title"] = "List Of Users";
+}
+
+<h1>List Of Users</h1>
+
+
+@if (Model.Any())
+{
+
+
+    foreach (var users in Model)
+    {
+        
+        <div class="card">
+        
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-2"> User ID</div>
+                    <div class="col-8"> @users.Id</div>
+                </div>
+            </div>
+        
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">Email ID</div>
+                    <div class="col-8"> @users.Email</div>
+                </div>
+
+            </div>
+        
+            <div class="card-footer">
+                <a  class="btn btn-primary" asp-route-id="@users.Id" asp-controller="Rolemanag" asp-action="EditUser" > Edit </a>
+                <a  class="btn btn-danger"> Cancel </a>
+            </div>
+        </div>
+        
+    }
+
+
+
+
+
+}
+else
+{
+    <h1>No User Is Present Right Now.</h1>
+}

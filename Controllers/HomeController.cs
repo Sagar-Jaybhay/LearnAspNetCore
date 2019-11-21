@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace LearnAspCore.Controllers
 {
     /// [Route("[controller]")]
-    
+    [Authorize(Roles = "Admin,User")]
     public class HomeController : Controller
     {
         private IStudentRepository _repository;
@@ -22,20 +22,18 @@ namespace LearnAspCore.Controllers
             this.histingEnviroment = ihostEnvironment;
             loggerObject = logger;
         }
-
         //[Route("")]
         //[Route("~/")]
         //[Route("[action]")]
+        [Authorize(Roles = "User")]
         public ViewResult Index()
         {
-
             loggerObject.LogCritical("LogCritical");
             loggerObject.LogDebug("LogDebug");
             loggerObject.LogError("LogError");
             loggerObject.LogInformation("LogInformation");
             loggerObject.LogTrace("LogTrace");
             loggerObject.LogWarning("LogWarning");
-
             var v = _repository.GetAllStudent();
             return View(v);
         }
@@ -172,6 +170,14 @@ namespace LearnAspCore.Controllers
 
             return filename;
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
     }
 }
 
