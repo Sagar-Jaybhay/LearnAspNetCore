@@ -274,5 +274,31 @@ namespace LearnAspCore.Controllers
             return View(userView);
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string UserID)
+        {
+
+            var user =await _userManager.FindByIdAsync(UserID);
+            if (user != null)
+            {
+                var result = await _userManager.DeleteAsync(user);
+
+                if (result.Succeeded)
+                    return RedirectToAction("ListOfRoles");
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("",error.Description);
+                }
+            }
+            else
+            {
+                return View("NotFound");
+            }
+
+            return View("NotFound");
+        }
+
     }
 }

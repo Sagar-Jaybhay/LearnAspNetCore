@@ -32,19 +32,42 @@
             </div>
         
             <div class="card-footer">
-                <a  class="btn btn-primary" asp-route-id="@users.Id" asp-controller="Rolemanag" asp-action="EditUser" > Edit </a>
-                <a  class="btn btn-danger"> Cancel </a>
+                <div class="row col-12">
+                    
+                    <a class="btn btn-primary " asp-route-id="@users.Id" asp-controller="Rolemanag" asp-action="EditUser"> Edit </a>
+                    <div class="col-1"></div>
+                    <form method="post" asp-action="DeleteUser" asp-controller="Rolemanag" asp-route-UserID="@users.Id">
+                        @*<button type="submit" class="btn btn-danger " value="Delete" onclick="return confirm('Are you sure,for delete this user :@users.UserName')">Delete</button>*@
+                        
+                        <span style="display: none" id="DeleteSpan_@users.Id">
+                            
+                            <span>Are you sure,for delete this user.</span>
+                            <button type="submit" class="btn btn-danger" >Yes</button>
+                            <a href="#" class="btn btn-primary" onclick="DeleteUser('@users.Id',false)">No</a>
+                        </span>
+                        <a href="#" class="btn btn-danger" value="Delete" onclick="DeleteUser('@users.Id',true)" id="DeleteButton">Delete</a>
+                    </form>    
+                </div>
             </div>
         </div>
         
     }
-
-
-
-
-
 }
 else
 {
     <h1>No User Is Present Right Now.</h1>
 }
+<script>
+    function DeleteUser(UserID,isDeleted) {
+
+        var ID = "DeleteSpan_" + UserID;
+        Id.sub
+        if (!isDeleted) {
+            document.getElementById('DeleteButton').style.display = "block";
+            document.getElementById(ID).style.display = "none";
+        } else {
+            document.getElementById('DeleteButton').style.display = "none";
+                document.getElementById(ID).style.display = "block";
+        }
+    }
+</script>
